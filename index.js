@@ -47,16 +47,14 @@ class Book {
 	}
 
 	addToPage(book) {
-		//if (title && author) 
-		const div = document.createElement('div');
-		div.innerHTML = `
-		<tr class="table-row" style="color:red">
-			<td class="title-col" >${book.Title}</td>
-			<td class="author-col">${book.Author}</td>
+	
+		bookList.innerHTML += `
+		<tr class="table-row" >
+			<td class="title-col" >"${book.Title}" by ${book.Author}</td>
 			<td class="btn-col"><button id="${book.Title}" type="submit" onclick= book.removeBook(this.id)>Remove</button></td>
 		</tr>
 		`
-		bookList.appendChild(div);
+	
 	}
 
 	// Update booksArray with data from localStorage
@@ -98,4 +96,4 @@ bookForm.addEventListener('submit', (e) => {
 	authorForm.value = "";
 });
 
-document.querySelector('.table-row').style.backgroundColor = 'red';
+// document.querySelector('.table-row').style.backgroundColor = 'red';

@@ -1,32 +1,72 @@
 .container {
 	display: flex;
 	flex-direction: column;
-	gap: 2px;
+	gap: 3px;
 	align-items: center;  
+	color: black;
+}
+.header{
+
+	width: 40%;
+	display: flex;
+	justify-content: center;
+	padding:1px 10px;
+}
+
+main{
+	width: 40%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 15px;
+	padding: 10px;
+	height: auto;
+	font-size: 18px;
+	font-weight: 600;
+}
+
+form{
+	display: flex;
+	flex-direction: column;
+	height: auto;
+	border: 1xp solid black;
+}
+
+form .style-me{
+	height: 5px;
+	width: 50%;
+	justify-self: center;
+	align-self: center;
+	background-color: #000;
+	border-radius: 100px;
+	margin-bottom: 30px;
+}
+
+.btn-col{
+	border: 5px solid black;
 }
 
 table {
-	border: 4px solid #000;  
+	border: 3px solid #000; 
+	display: flex;
+	flex-direction: column; 
+	gap: 15px;
+	height: auto;
+	width: 90%; 
+	padding: 5%;
+
+} 
+#books-list tbody:nth-child(even) { background-color: rgb(146, 148, 146); } 
+
+table tr{
+	display: flex;
+	height: auto;
+	align-items: center;
+	padding: 1px;
+	justify-content: space-between;
 }
 
-.table-row {
-	padding-top: 10px;
-	padding-bottom: 10px;
-	background: blue;
-}
+table tr:nth-child(even) {
+	background-color: #aa4a4a;
+} 
 
-#title-input {
-	margin-top: 20px;
-}
-
-table .author-col {
-	text-align: center;
-}
-
-table .btn-col {
-	text-align: right;
-}
-
-tr:nth-child(even) {
-	background-color: #dddddd;
-}
