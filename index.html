@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head >
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap" rel="stylesheet">    
+    <title>Awesome Books</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Awesome Books</h1>
+      </header>
+      <main>
+        <div id="books-list">
+        </div>
+
+        <form id="book-form" action="/" method="post">
+          <input id="title-input" type="text" placeholder="Title" name="title"><br/><br/>
+          <input id="author-input" type="text" placeholder="Auuthor" name="author"><br/><br/>
+          <button id="submit-btn" type="submit">Add</button>
+        </form>
+      </main>
+    </div>
+    <script src="index.js"></script>
+  </body>
+  
+</html>
