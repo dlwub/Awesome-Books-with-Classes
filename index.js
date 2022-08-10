@@ -5,96 +5,125 @@ const bookList = document.getElementById('books-list');
 
 class Book {
 	booksArray = []
-	constructor(id, title, author){
-		this.id = id,
-		this.title = title,
-		this.author = author   
+
+	constructor() {
+		this.getLocalStorage()
+		console.log("creating book object")
+		console.log(this.booksArray)
 	}
 
 	inArray(id) {
-		for (let book of  booksArray) {
+		for (let book of this.booksArray) {
 			if (book.Title.includes(id)) {
 				return true;
-		 }
-		 return false;
+			}
+			return false;
 		}
 	}
 
-	addBookToArray(title, author){
+	addBookToArray(title, author) {
 		//Check for empty book and add book to booksArray 
 		if (title && author) {
-				if(!inArray(title)){
-					const book = new Book(title, title, author);
-					this.booksArray = [...this.booksArray, book];
-				}      
+			if (!this.inArray(title)) {
+				this.booksArray = [...this.booksArray, {
+					"id": title,
+					"Title": title,
+					"Author": author
+				}];
+			}
 		}
+		console.log(this.booksArray)
 	}
 
-	createElt(elt, class_name, text_content){
+	createElt(elt, clsName, textContent = '') {
 		let elt1 = document.createElement(elt);
-		elt1.className = class_name;
-		elt1.textContent = text_content;
+		elt1.clsName = clsName;
+		if (textContent !== "") {
+			elt1.textContent = textContent;
+		}
 		return elt1;
 	}
 
-	displayPage(){
-		this.booksArray.forEach(addToPage);
+	displayPage() {
+		this.booksArray.forEach(this.addToPage);
+		// for(of)
 	}
 
 	addToPage(book) {
 		//if (title && author) 
-		const div = createElt('div', 'book-items', '');
-		const pTitle = createElt('p', 'book-title', `${book.Title}`);
-		const pAuthor = createElt('p', 'book-author', `${book.Author}`);			
-		const removeBtn = createElt('button', '', 'Remove');
-		removeBtn.id = `${book.Title}`;		
-		const hr = document.createElement('hr');
-		div.appendChild(pTitle);
-		div.appendChild(pAuthor);
-		div.appendChild(removeBtn);
-		div.appendChild(hr);
-		bookList.appendChild(div);
+		console.log(book)
+		const div = document.createElement('div');
+		const str = `
+		<p>${book.Title}</p>
+		<p>${book.Author}</p>
 		
-	}	
+		`;
+		const removeBtn = document.createElement('button', 'remove-btn', 'Remove');
+		removeBtn.className = 'remove-btn';
+		removeBtn.id = `${book.Title}`;
+		removeBtn.innerHTML = 'Remove';
+		// removeBtn.setAttribute("onclick", book.removeBook(this.id))
+		// removeBtn.addEventListener("click", (e)=> {
+		// 	e.preventDefault()
+		// 	// book.removeBook(e.target.id)
+
+		// 	console.log(e.target.id)
+		// },)
+
+		const hr = document.createElement('hr')
+		div.innerHTML = str;
+		div.appendChild(removeBtn)
+		div.appendChild(hr)
+		console.log(div)
+		bookList.appendChild(div);
+
+	}
+
+
+
 	// Update booksArray with data from localStorage
 	getLocalStorage() {
 		// Check if data is in storage and convert to js object
-		if (localStorage.getItem('bookList')) {		    
-		    this.booksArray = JSON.parse(localStorage.getItem('bookList'));
-		  }
+		if (localStorage.getItem('bookList')) {
+			this.booksArray = JSON.parse(localStorage.getItem('bookList'));
 		}
-	
-	setLocalStorage(key, value) {
-		localStorage.setItem(key, JSON.stringify(value));
+	}
+
+	setLocalStorage() {
+		localStorage.setItem('bookList', JSON.stringify(this.booksArray));
 	}
 
 	removeBook(title) {
-  	this.booksArray = this.booksArray.filter((book) => book.Title !== title); 
+		this.booksArray = this.booksArray.filter((book) => book.Title !== title);
 		bookList.innerHTML = '';
-    setLocalStorage('bookList', this.booksArray);    
-  }
+		setLocalStorage('bookList', this.booksArray);
+	}
 }
 
 
+const book = new Book()
 
+window.addEventListener('load', (e) => {
 
-document.body.onload = getLocalStorage();
-
-removeBtn.addEventListener('click', (e) => {
-   removeBook(e.target.id);
 });
+
+// removeBtn.addEventListener('click', (e) => {
+//    removeBook(e.target.id);
+// });
 
 
 bookForm.addEventListener('submit', (e) => {
-  e.preventDefault();
-  const title = titleForm.value;
-  const author = authorForm.value;
+	e.preventDefault();
+	const title = titleForm.value;
+	const author = authorForm.value;
 
-  addBookToArray(title, author);
+	book.addBookToArray(title, author);
+	book.setLocalStorage()
+	book.displayPage();
 
-  // store data to localStorage to retain data on pageload
-  populateLocalStorage('bookList', booksArray);
 
-  bookList.innerHTML = '';
-	displayPage();  
+
+
 });
+
+
