@@ -7,9 +7,7 @@ class Book {
 	booksArray = []
 
 	constructor() {
-		this.getLocalStorage()
-		console.log("creating book object")
-		console.log(this.booksArray)
+		this.getLocalStorage()		
 	}
 
 	inArray(id) {
@@ -52,10 +50,11 @@ class Book {
 		//if (title && author) 
 		const div = document.createElement('div');
 		div.innerHTML = `
-		<p>${book.Title}</p>
-		<p>${book.Author}</p>
-		<button id="${book.Title}" type="submit" onclick= book.removeBook(this.id)>Remove</button>
-		<hr>
+		<tr class="table-row" style="color:red">
+			<td class="title-col" >${book.Title}</td>
+			<td class="author-col">${book.Author}</td>
+			<td class="btn-col"><button id="${book.Title}" type="submit" onclick= book.removeBook(this.id)>Remove</button></td>
+		</tr>
 		`
 		bookList.appendChild(div);
 	}
@@ -98,3 +97,5 @@ bookForm.addEventListener('submit', (e) => {
 	titleForm.value = "";
 	authorForm.value = "";
 });
+
+document.querySelector('.table-row').style.backgroundColor = 'red';

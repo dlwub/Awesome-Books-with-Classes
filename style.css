@@ -1,6 +1,32 @@
 .container {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  align-items: center;
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+	align-items: center;  
+}
+
+table {
+	border: 4px solid #000;  
+}
+
+.table-row {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	background: blue;
+}
+
+#title-input {
+	margin-top: 20px;
+}
+
+table .author-col {
+	text-align: center;
+}
+
+table .btn-col {
+	text-align: right;
+}
+
+tr:nth-child(even) {
+	background-color: #dddddd;
 }
