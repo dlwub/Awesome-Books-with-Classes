@@ -31,8 +31,7 @@ class Book {
 					"Author": author
 				}];
 			}
-		}
-		console.log(this.booksArray)
+		}		
 	}
 
 	createElt(elt, clsName, textContent = '') {
@@ -46,43 +45,20 @@ class Book {
 
 	displayPage() {
 		bookList.innerHTML = '';
-		this.booksArray.forEach(this.addToPage);
-		// for(of)
+		this.booksArray.forEach(this.addToPage);		
 	}
 
 	addToPage(book) {
 		//if (title && author) 
-		console.log(book)
 		const div = document.createElement('div');
-		const str = `
+		div.innerHTML = `
 		<p>${book.Title}</p>
 		<p>${book.Author}</p>
 		<button id="${book.Title}" type="submit" onclick= book.removeBook(this.id)>Remove</button>
 		<hr>
-		`;
-		// const removeBtn = document.createElement('button', 'remove-btn', 'Remove');
-		// removeBtn.className = 'remove-btn';
-		// removeBtn.id = `${book.Title}`;
-		// removeBtn.innerHTML = 'Remove';
-
-		// removeBtn.setAttribute("onclick", book.removeBook(this.id))
-		// removeBtn.addEventListener("click", (e)=> {
-		// 	e.preventDefault()
-		// 	// book.removeBook(e.target.id)
-
-		// 	console.log(e.target.id)
-		// },)
-
-		// const hr = document.createElement('hr')
-		div.innerHTML = str;
-		// div.appendChild(removeBtn)
-		// div.appendChild(hr)
-		console.log(div)
+		`
 		bookList.appendChild(div);
-
 	}
-
-
 
 	// Update booksArray with data from localStorage
 	getLocalStorage() {
@@ -104,17 +80,11 @@ class Book {
 	}
 }
 
-
 const book = new Book()
 
 window.addEventListener('load', (e) => {
 	book.displayPage();
 });
-
-// removeBtn.addEventListener('click', (e) => {
-//    removeBook(e.target.id);
-// });
-
 
 bookForm.addEventListener('submit', (e) => {
 	e.preventDefault();
@@ -124,6 +94,7 @@ bookForm.addEventListener('submit', (e) => {
 	book.addBookToArray(title, author);
 	book.setLocalStorage()
 	book.displayPage();
+
+	titleForm.value = "";
+	authorForm.value = "";
 });
-
-
