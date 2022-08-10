@@ -45,6 +45,7 @@ class Book {
 	}
 
 	displayPage() {
+		bookList.innerHTML = '';
 		this.booksArray.forEach(this.addToPage);
 		// for(of)
 	}
@@ -56,12 +57,14 @@ class Book {
 		const str = `
 		<p>${book.Title}</p>
 		<p>${book.Author}</p>
-		
+		<button id="${book.Title}" type="submit" onclick= book.removeBook(this.id)>Remove</button>
+		<hr>
 		`;
-		const removeBtn = document.createElement('button', 'remove-btn', 'Remove');
-		removeBtn.className = 'remove-btn';
-		removeBtn.id = `${book.Title}`;
-		removeBtn.innerHTML = 'Remove';
+		// const removeBtn = document.createElement('button', 'remove-btn', 'Remove');
+		// removeBtn.className = 'remove-btn';
+		// removeBtn.id = `${book.Title}`;
+		// removeBtn.innerHTML = 'Remove';
+
 		// removeBtn.setAttribute("onclick", book.removeBook(this.id))
 		// removeBtn.addEventListener("click", (e)=> {
 		// 	e.preventDefault()
@@ -70,10 +73,10 @@ class Book {
 		// 	console.log(e.target.id)
 		// },)
 
-		const hr = document.createElement('hr')
+		// const hr = document.createElement('hr')
 		div.innerHTML = str;
-		div.appendChild(removeBtn)
-		div.appendChild(hr)
+		// div.appendChild(removeBtn)
+		// div.appendChild(hr)
 		console.log(div)
 		bookList.appendChild(div);
 
@@ -96,7 +99,8 @@ class Book {
 	removeBook(title) {
 		this.booksArray = this.booksArray.filter((book) => book.Title !== title);
 		bookList.innerHTML = '';
-		setLocalStorage('bookList', this.booksArray);
+		this.setLocalStorage('bookList', this.booksArray);
+		this.displayPage()
 	}
 }
 
@@ -104,7 +108,7 @@ class Book {
 const book = new Book()
 
 window.addEventListener('load', (e) => {
-
+	book.displayPage();
 });
 
 // removeBtn.addEventListener('click', (e) => {
@@ -120,10 +124,6 @@ bookForm.addEventListener('submit', (e) => {
 	book.addBookToArray(title, author);
 	book.setLocalStorage()
 	book.displayPage();
-
-
-
-
 });
 
 
