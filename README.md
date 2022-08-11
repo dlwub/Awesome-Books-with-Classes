@@ -14,7 +14,8 @@
 
 ## Live Demo (if available)
 
-[Live Demo Link]( )
+[Live Demo Link](https://dlwub.github.io/Awesome-Books-with-Classes/)
+
 
 
 ## Getting Started
@@ -56,4 +57,6 @@ Give a ⭐️ if you like this project!
 
 ## 📝 License
 
+
 @Copy Right : Lawrence Kusi and Desta Legesse
+
