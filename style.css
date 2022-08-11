@@ -29,7 +29,6 @@ form {
   display: flex;
   flex-direction: column;
   height: auto;
-  border: 1px solid black;
 }
 
 form .style-me {
@@ -64,6 +63,6 @@ table tr {
   justify-content: space-between;
 }
 
-#books-list tbody:nth-child(even) {
-	 background-color: rgb(152, 156, 152); 
-	}
+#books-list tbody:nth-child(odd) {
+  background-color: rgb(152, 156, 152);
+}
