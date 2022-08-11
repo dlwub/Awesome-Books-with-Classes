@@ -29,6 +29,7 @@ form {
   display: flex;
   flex-direction: column;
   height: auto;
+  gap: 15px;
 }
 
 form .style-me {
